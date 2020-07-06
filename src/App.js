@@ -43,20 +43,20 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       setTileset(gameOfLife(tileSet));
-    }, 100)
+    }, 30)
   });
   return (
     <div className="bg-dark center" align="center" style={{fontSize: "8px"}}>
         {
           tileSet
-            .map(tile => {
+            .map( (tile, i)=> {
               return tile
-                ? <span style={tileStyle}>&emsp;</span>
-                : <span style={tileStyleOff}>&emsp;</span>
+                ? <span key={i} style={tileStyle}>&emsp;</span>
+                : <span key={i} style={tileStyleOff}>&emsp;</span>
             })
             .map((tile, idx) =>
               idx % width === 0
-                ? <><br />{tile}</>
+                ? <React.Fragment key={idx+"frag"}><br key={idx+"abc"} />{tile}</React.Fragment>
                 : tile
             )
         }
